@@ -4,16 +4,19 @@ import java.util.Random;
 
 public class HourGlass {
 public static void main(String args[]) {
-	int[][] inputArray = new int[6][6];
+	int[][] inputArray = {{1,1,1,0,0,0},{0,1,0,0,0,0},{1,1,1,0,0,0},{0,9,2,-4,-4,0},{0,0,0,-2,0,0},{0,0,-1,-2,-4,0}};
 	int[][] resultArray = new int[3][3];
-	Random rand = new Random();
 	int i,j,sum = 0, maxSum = Integer.MIN_VALUE;
+	/*
+	Random rand = new Random();
 	for(i = 0; i < 6; i++)
 		for(j = 0; j < 6; j++)
 			inputArray[i][j] = rand.nextInt(9+9) - 9;
+	*/
 	i = 1;
-	j = 1;
-	while(i - 1 >= 0 && j - 1 >=0 && i + 1 < 6 && j + 1 < 6) {
+	while(i - 1 >= 0 &&  i + 1 < 6) {
+		j=1;
+		while(j - 1 >=0 && j + 1 < 6){
 	sum = inputArray[i - 1][j - 1] +
 			inputArray[i - 1][j] +
 			inputArray[i - 1][j + 1] +
@@ -33,8 +36,10 @@ public static void main(String args[]) {
 		resultArray[2][1] = inputArray[i + 1][j];
 		resultArray[2][2] = inputArray[i + 1][j + 1];
 	}
+	j++;
+	}
 	i++;
-	j++;	}
+	}
 	System.out.println("The Input Array is:");
 	for(i = 0; i < 6; i++) {
 		for(j = 0; j < 6; j++)
