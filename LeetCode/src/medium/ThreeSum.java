@@ -1,37 +1,36 @@
 package medium;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 //Question : https://leetcode.com/problems/3sum/description/
 public class ThreeSum {
-public static int[][] threeSum(int array[]){
-	int i = 0,j = 1 ,k = 2,l = 0,sum = 0, n = array.length;
-	int[][] outPut = new int[n][3];
-	while(i < n) {
-		sum = array[i] + array[j] + array[k];
-		if(sum == 0) {
-			outPut[l][0] = array[i];
-			outPut[l][1] = array[j];
-			outPut[l][2] = array[k];
+public static List<List<Integer>> threeSum(int nums[]){
+	Arrays.sort(nums);
+	HashMap<Integer, Integer> temp = new HashMap<>();
+	List<List<Integer>> res = new ArrayList<>();
+	for(int i = 0; i < nums.length; i++)
+		temp.put(nums[i], i);
+	for(int i = 0; i <nums.length - 1; i++) {
+		for(int j = i + 1; j < nums.length - 2; j++) {
+			int target = 0 - nums[i] - nums[j];
+			if(temp.containsKey(target) && temp.get(target) > j) {
+				j  = temp.get(nums[j]);
+				res.add(Arrays.asList(nums[i], nums[j], target));
+			}
 		}
-		else {
-			outPut[l][0] = Integer.MIN_VALUE;
-			outPut[l][1] = Integer.MIN_VALUE;
-			outPut[l][2] = Integer.MIN_VALUE;
-		}
-		i++;
-		j = (i + 1) % n;
-		k = (i + 2) % n;
-		l++;
-}
-	return outPut;
+		i = temp.get(nums[i]);
+		if(i > nums.length - 1)
+			break;
+	}
+	return res;
 }
 
 public static void main(String args[]) {
 	int input[] = {-1, 0, 1, 2, -1, -4};
-	int out[][] = threeSum(input);
-	for(int i = 0; i < input.length; i++) {
-		for(int j = 0; j < 3; j++)
-			if(out[i][j] != Integer.MIN_VALUE)
-				System.out.print(out[i][j]+"\t");
-		System.out.println();
+	List<List<Integer>> outPut = threeSum(input);
+	System.out.println(outPut);
 	}
-}
 }

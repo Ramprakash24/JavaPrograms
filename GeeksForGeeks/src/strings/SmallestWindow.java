@@ -43,7 +43,7 @@ public static String findSubString(String str) {
 	return str.substring(start_index, start_index+min_len);
 }
 public static void main(String args[]) {
-	String str = "GEEKSGEEKSFO";
+	String str = "ABDEFGABEF";
 	System.out.println(findSubString(str).length());
 }
 }
