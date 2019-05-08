@@ -48,14 +48,15 @@ public class LinkedListOperations {
 				System.out.print(pNode.data+"->");
 			pNode = pNode.next;
 		}
-	}
+	}	
 	
 	public static void main(String args[]) {
 		LinkedListOperations llist = new LinkedListOperations();
 		llist.append(10);
-		llist.append(20);
+		llist.append(5);
 		llist.append(30);
 		//llist.insertAfter(20, 40);
 		llist.printList();
+		
 	}
 }
